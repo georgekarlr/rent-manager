@@ -40,9 +40,9 @@ export function LeaseForm({ onSaved, onCancel }: LeaseFormProps) {
   const fetchTenantsAndProperties = async () => {
     try {
       const [tenantsRes, propertiesRes, activeLeasesRes] = await Promise.all([
-        supabase.from('tenants').select('*').eq('landlord_id', user!.id),
-        supabase.from('properties').select('*').eq('landlord_id', user!.id),
-        supabase.from('leases').select('tenant_id, property_id').eq('status', 'active')
+        supabase.from('rms_tenants').select('*').eq('landlord_id', user!.id),
+        supabase.from('rms_properties').select('*').eq('landlord_id', user!.id),
+        supabase.from('rms_leases').select('tenant_id, property_id').eq('status', 'active')
       ])
 
       const activeLeases = activeLeasesRes.data || []
@@ -100,7 +100,7 @@ export function LeaseForm({ onSaved, onCancel }: LeaseFormProps) {
         notes: formData.notes
       }
 
-      const { data } = await supabase.rpc('create_lease', {
+      const { data } = await supabase.rpc('rms_create_lease', {
         p_tenant_id: formData.tenant_id,
         p_property_id: formData.property_id,
         p_lease_terms: leaseTerms 

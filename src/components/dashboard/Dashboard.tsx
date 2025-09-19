@@ -48,10 +48,10 @@ export function Dashboard() {
     try {
       // Get basic stats
       const [propertiesRes, tenantsRes, leasesRes, maintenanceRes] = await Promise.all([
-        supabase.from('properties').select('id, monthly_rent').eq('landlord_id', user!.id),
-        supabase.from('tenants').select('id').eq('landlord_id', user!.id),
-        supabase.from('leases').select('id, monthly_rent').eq('status', 'active'),
-        supabase.from('maintenance_requests').select('id').eq('status', 'pending')
+        supabase.from('rms_properties').select('id, monthly_rent').eq('landlord_id', user!.id),
+        supabase.from('rms_tenants').select('id').eq('landlord_id', user!.id),
+        supabase.from('rms_leases').select('id, monthly_rent').eq('status', 'active'),
+        supabase.from('rms_maintenance_requests').select('id').eq('status', 'pending')
       ])
 
       // Calculate monthly revenue
@@ -66,7 +66,7 @@ export function Dashboard() {
       })
 
       // Get due payments
-      const { data: duePaymentsData } = await supabase.rpc('get_due_payments', {
+      const { data: duePaymentsData } = await supabase.rpc('rms_get_due_payments', {
         landlord_id: user!.id
       }) as { data: RpcResponse }
 

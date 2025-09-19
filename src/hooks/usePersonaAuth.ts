@@ -56,7 +56,7 @@ export function usePersonaAuth(userEmail: string | null): [PersonaAuthState, Per
 
   const validateAdminPassword = useCallback(async (password: string) => {
     try {
-      const { data, error } = await supabase.rpc('validate_rent_manager_admin_password', {
+      const { data, error } = await supabase.rpc('rms_validate_rent_manager_admin_password', {
         p_account_password: password
       })
 
@@ -77,7 +77,7 @@ export function usePersonaAuth(userEmail: string | null): [PersonaAuthState, Per
 
   const validateStaffAccount = useCallback(async (loginName: string, password: string) => {
     try {
-      const { data, error } = await supabase.rpc('validate_rent_manager_staff_account', {
+      const { data, error } = await supabase.rpc('rms_validate_rent_manager_staff_account', {
         p_login_name: loginName,
         p_login_password: password
       })

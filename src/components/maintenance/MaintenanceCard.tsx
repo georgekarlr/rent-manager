@@ -48,7 +48,7 @@ export function MaintenanceCard({ request, onUpdated }: MaintenanceCardProps) {
 
     try {
       const { error } = await supabase
-        .from('maintenance_requests')
+        .from('rms_maintenance_requests')
         .update({ status: newStatus, updated_at: new Date().toISOString() })
         .eq('id', request.id)
 

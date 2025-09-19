@@ -23,7 +23,7 @@ export function TenantsPage() {
   const fetchTenants = async () => {
     try {
       const { data, error } = await supabase
-        .from('tenants')
+        .from('rms_tenants')
         .select('*')
         .eq('landlord_id', user!.id)
         .order('created_at', { ascending: false })

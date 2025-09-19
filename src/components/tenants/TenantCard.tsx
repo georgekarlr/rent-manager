@@ -19,7 +19,7 @@ export function TenantCard({ tenant, onEdit, onDeleted }: TenantCardProps) {
 
     setDeleting(true)
     try {
-      const { data } = await supabase.rpc('delete_tenant', {
+      const { data } = await supabase.rpc('rms_delete_tenant', {
         tenant_id: tenant.id
       }) as { data: RpcResponse }
 

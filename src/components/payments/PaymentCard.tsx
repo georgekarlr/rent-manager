@@ -69,7 +69,7 @@ export function PaymentCard({ payment, onUpdated }: PaymentCardProps) {
     setError('')
 
     try {
-      const { data } = await supabase.rpc('process_refund', {
+      const { data } = await supabase.rpc('rms_process_refund', {
         payment_id: payment.id,
         refund_amount: parseFloat(refundAmount),
         reason: refundReason

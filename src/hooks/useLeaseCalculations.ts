@@ -48,7 +48,7 @@ export function useLeaseCalculations({ lease, onUpdated }: UseLeaseCalculationsP
       setLoading(true)
       
       const { data: payments, error } = await supabase
-        .from('payments')
+        .from('rms_payments')
         .select('*')
         .eq('lease_id', lease.id)
         .order('payment_date', { ascending: true })
@@ -183,7 +183,7 @@ export function useLeaseCalculations({ lease, onUpdated }: UseLeaseCalculationsP
   }, [calculateLeaseMetrics])
 
   const recordPayment = async (formData: { amount: string; payment_date: string; notes: string; }) => {
-    const { data } = await supabase.rpc('collect_payment', {
+    const { data } = await supabase.rpc('rms_collect_payment', {
         p_lease_id: lease.id,
         p_amount: parseFloat(formData.amount),
         p_payment_date: formData.payment_date,
@@ -198,7 +198,7 @@ export function useLeaseCalculations({ lease, onUpdated }: UseLeaseCalculationsP
   }
 
   const processRefund = async (formData: { payment_id: string; amount: string; reason: string; }) => {
-     const { data } = await supabase.rpc('process_refund', {
+     const { data } = await supabase.rpc('rms_process_refund', {
         payment_id: formData.payment_id,
         refund_amount: parseFloat(formData.amount),
         reason: formData.reason

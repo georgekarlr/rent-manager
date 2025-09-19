@@ -33,7 +33,7 @@ export function MaintenanceForm({ onSaved, onCancel }: MaintenanceFormProps) {
   const fetchProperties = async () => {
     try {
       const { data, error } = await supabase
-        .from('properties')
+        .from('rms_properties')
         .select('*')
         .eq('landlord_id', user!.id)
 
@@ -59,7 +59,7 @@ export function MaintenanceForm({ onSaved, onCancel }: MaintenanceFormProps) {
         notes: formData.notes
       }
 
-      const { data } = await supabase.rpc('create_maintenance_request', {
+      const { data } = await supabase.rpc('rms_create_maintenance_request', {
         property_id: formData.property_id,
         request_details: requestDetails
       }) as { data: RpcResponse }
