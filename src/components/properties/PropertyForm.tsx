@@ -70,6 +70,7 @@ export function PropertyForm({ property, onSaved, onCancel }: PropertyFormProps)
             property_data: propertyData
           }) as { data: RpcResponse }
 
+        console.log(data);
       if (data?.success) {
         onSaved()
       } else {
