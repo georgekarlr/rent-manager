@@ -66,7 +66,7 @@ export function Dashboard() {
       })
 
       // Get due payments
-      const { data: duePaymentsData } = await supabase.rpc('get_due_payments', {
+      const { data: duePaymentsData } = await supabase.rpc('rms_get_due_payments', {
         landlord_id: user!.id
       }) as { data: RpcResponse }
 

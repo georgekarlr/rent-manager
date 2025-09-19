@@ -62,7 +62,7 @@ export function PersonaManagement() {
   const fetchStaffAccounts = async () => {
     try {
       setLoading(true)
-      const { data, error } = await supabase.rpc('get_current_user_account_names_rent_mangement')
+      const { data, error } = await supabase.rpc('rms_get_current_user_account_names_rent_mangement')
       
       if (error) throw error
       
@@ -103,7 +103,7 @@ export function PersonaManagement() {
 
     setLoading(true)
     try {
-      const { data } = await supabase.rpc('update_rent_admin_password_with_old', {
+      const { data } = await supabase.rpc('rms_update_rent_admin_password_with_old', {
         p_old_password: adminForm.oldPassword,
         p_new_password: adminForm.newPassword
       }).single() as { data: RpcResponse }
@@ -140,7 +140,7 @@ export function PersonaManagement() {
 
     setLoading(true)
     try {
-      const { data } = await supabase.rpc('create_rent_staff_account', {
+      const { data } = await supabase.rpc('rms_create_rent_staff_account', {
         p_name: staffForm.name,
         p_password: staffForm.password
       }).single() as { data: RpcResponse }
@@ -178,7 +178,7 @@ export function PersonaManagement() {
 
     setLoading(true)
     try {
-      const { data } = await supabase.rpc('update_rent_staff_password', {
+      const { data } = await supabase.rpc('rms_update_rent_staff_password', {
         p_name: editingStaff!,
         p_new_password: staffForm.password
       }).single() as { data: RpcResponse }
@@ -207,7 +207,7 @@ export function PersonaManagement() {
     clearMessages()
     setLoading(true)
     try {
-      const { data } = await supabase.rpc('delete_rent_staff_account', {
+      const { data } = await supabase.rpc('rms_delete_rent_staff_account', {
         p_name: staffName
       }).single() as { data: RpcResponse }
 

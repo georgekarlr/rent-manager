@@ -100,7 +100,7 @@ export function LeaseForm({ onSaved, onCancel }: LeaseFormProps) {
         notes: formData.notes
       }
 
-      const { data } = await supabase.rpc('create_lease', {
+      const { data } = await supabase.rpc('rms_create_lease', {
         p_tenant_id: formData.tenant_id,
         p_property_id: formData.property_id,
         p_lease_terms: leaseTerms 

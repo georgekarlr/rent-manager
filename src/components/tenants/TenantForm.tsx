@@ -53,11 +53,11 @@ export function TenantForm({ tenant, onSaved, onCancel }: TenantFormProps) {
       }
 
       const { data } = tenant
-        ? await supabase.rpc('update_tenant', {
+        ? await supabase.rpc('rms_update_tenant', {
             tenant_id: tenant.id,
             tenant_data: tenantData
           })
-        : await supabase.rpc('create_tenant', {
+        : await supabase.rpc('rms_create_tenant', {
             tenant_data: tenantData
           }) as { data: RpcResponse }
 

@@ -35,7 +35,7 @@ export function LeaseCard({ lease, onUpdated, onViewDetails }: LeaseCardProps) {
 
     setTerminating(true)
     try {
-      const { data } = await supabase.rpc('terminate_lease', {
+      const { data } = await supabase.rpc('rms_terminate_lease', {
         lease_id: lease.id,
         termination_date: new Date().toISOString().split('T')[0]
       }) as { data: RpcResponse }

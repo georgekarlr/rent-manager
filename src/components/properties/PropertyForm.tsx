@@ -62,11 +62,11 @@ export function PropertyForm({ property, onSaved, onCancel }: PropertyFormProps)
       }
 
       const { data } = property
-        ? await supabase.rpc('update_property', {
+        ? await supabase.rpc('rms_update_property', {
             property_id: property.id,
             property_data: propertyData
           })
-        : await supabase.rpc('create_property', {
+        : await supabase.rpc('rms_create_property', {
             property_data: propertyData
           }) as { data: RpcResponse }
 
