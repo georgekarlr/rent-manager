@@ -33,7 +33,7 @@ export function LeasesPage() {
   const fetchLeases = async () => {
     try {
       const { data, error } = await supabase
-        .from('leases')
+        .from('rms_leases')
         .select(`
           *,
           tenants!inner(id, name, email),

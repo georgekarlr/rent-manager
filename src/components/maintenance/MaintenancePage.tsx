@@ -28,7 +28,7 @@ export function MaintenancePage() {
   const fetchMaintenanceRequests = async () => {
     try {
       const { data, error } = await supabase
-        .from('maintenance_requests')
+        .from('rms_maintenance_requests')
         .select(`
           *,
           properties!inner(id, name, address, landlord_id)

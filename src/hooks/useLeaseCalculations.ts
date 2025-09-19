@@ -48,7 +48,7 @@ export function useLeaseCalculations({ lease, onUpdated }: UseLeaseCalculationsP
       setLoading(true)
       
       const { data: payments, error } = await supabase
-        .from('payments')
+        .from('rms_payments')
         .select('*')
         .eq('lease_id', lease.id)
         .order('payment_date', { ascending: true })

@@ -33,7 +33,7 @@ export function MaintenanceForm({ onSaved, onCancel }: MaintenanceFormProps) {
   const fetchProperties = async () => {
     try {
       const { data, error } = await supabase
-        .from('properties')
+        .from('rms_properties')
         .select('*')
         .eq('landlord_id', user!.id)
 

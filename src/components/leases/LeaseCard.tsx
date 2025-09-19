@@ -59,7 +59,7 @@ export function LeaseCard({ lease, onUpdated, onViewDetails }: LeaseCardProps) {
     setDeleting(true)
     try {
       const { error } = await supabase
-        .from('leases')
+        .from('rms_leases')
         .delete()
         .eq('id', lease.id)
 

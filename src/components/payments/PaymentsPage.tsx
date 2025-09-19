@@ -30,7 +30,7 @@ export function PaymentsPage() {
   const fetchPayments = async () => {
     try {
       const { data, error } = await supabase
-        .from('payments')
+        .from('rms_payments')
         .select(`
           *,
           leases!inner(

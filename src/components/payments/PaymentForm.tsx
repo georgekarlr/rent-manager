@@ -39,7 +39,7 @@ export function PaymentForm({ onSaved, onCancel }: PaymentFormProps) {
   const fetchActiveLeases = async () => {
     try {
       const { data, error } = await supabase
-        .from('leases')
+        .from('rms_leases')
         .select(`
           id,
           monthly_rent,
