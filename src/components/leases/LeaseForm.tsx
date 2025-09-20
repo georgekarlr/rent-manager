@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { supabase } from '../../lib/supabase'
 import { useAuth } from '../../contexts/AuthContext'
-import { X, Calculator, Calendar } from 'lucide-react'
+import { X, Calculator } from 'lucide-react'
 import { calculateEndDate, formatPeriodDuration, getPeriodLabel } from '../../lib/periodCalculations'
 import { getRentLabel } from '../../lib/periodCalculations'
 import { format } from 'date-fns'
@@ -53,7 +53,7 @@ export function LeaseForm({ onSaved, onCancel }: LeaseFormProps) {
       const availableTenants = (tenantsRes.data || []).filter(tenant => !activeTenantIds.has(tenant.id))
       const availableProperties = (propertiesRes.data || []).filter(property => !activePropertyIds.has(property.id))
 
-      setTenants(availableTenants)
+      setTenants(tenantsRes.data || [])
       setProperties(availableProperties)
     } catch (error) {
       console.error('Error fetching data:', error)
